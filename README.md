@@ -1,5 +1,9 @@
 # Hinderbana – ett Roblox-obby
 
+> Repot innehåller två spel: **Hinderbana** (den här mappen) och
+> **[AFTERHOURS: 03:00](afterhours/README.md)** (mappen `afterhours/`), ett socialt
+> överlevnadsspel om nattskiftet i en stad där något är fel.
+
 En komplett hinderbana (obby) för Roblox, skriven i Luau. Banan byggs av kod när
 spelet startar, så du kan börja med en helt tom place och ändra allt i en enda
 inställningsfil.

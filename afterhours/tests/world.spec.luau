@@ -213,6 +213,9 @@ return function(h)
 					t = part.Transparency,
 					sh = if part:IsA("Part") then part.Shape.Name else "Block",
 					lit = part:GetAttribute("Lit"),
+					g = part:GetAttribute("Group"),
+					row = part:GetAttribute("Row"),
+					cx = part:GetAttribute("Col"),
 					tags = part:GetTags(),
 				})
 			end
