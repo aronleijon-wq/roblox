@@ -466,6 +466,11 @@ function Plaza.build(ctx, c: Vector3, layout)
 	-- Zoner, loot och upptäckter -------------------------------------------------------
 	ctx.addZone("Restricted", "Line 3 Station", CFrame.new(c.X, FLOOR + 7, c.Z - 22), Vector3.new(142, 16, 64))
 	ctx.addDiscovery("StationPlatform", CFrame.new(c.X, FLOOR + 4, c.Z - 30), Vector3.new(120, 10, 16))
+	-- Stationens dova ljud (går även utan ström: det kommer någonstans längre in i tunneln).
+	local drone = Builder.anchor(root, "StationDrone", Vector3.new(1, 1, 1), CFrame.new(c.X, FLOOR + 5, c.Z - 32))
+	drone:SetAttribute("Sound", "StationDrone")
+	drone:SetAttribute("NeedsPower", false)
+	drone:AddTag(Constants.Tags.AmbientSound)
 	for _, offset in
 		{ Vector3.new(-40, 0, -28), Vector3.new(10, 0, -24), Vector3.new(48, 0, -30), Vector3.new(-12, 0, -2) }
 	do

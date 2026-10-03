@@ -150,6 +150,9 @@ function Substation.build(ctx, c: Vector3, _layout)
 		Enum.Material.Neon
 	)
 	coreGlow:AddTag("AH_StreetLight")
+	-- Brummet från kärnan (klienten spelar det; tystnar när strömmen går).
+	core:SetAttribute("Sound", "ElectricalHum")
+	core:AddTag("AH_AmbientSound")
 	Builder.pointLight(coreGlow, Color3.fromRGB(90, 170, 255), 28, 1.2, false)
 	local panel = Builder.box(
 		root,

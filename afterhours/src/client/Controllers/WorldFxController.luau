@@ -17,7 +17,6 @@ local TweenService = game:GetService("TweenService")
 local Workspace = game:GetService("Workspace")
 
 local Constants = require(ReplicatedStorage.Shared.Constants)
-local Theme = require(script.Parent.Parent.UI.Theme)
 local Ui = require(script.Parent.Parent.UI.Ui)
 
 local WorldFxController = {}
@@ -35,13 +34,14 @@ local OTHER_LIGHT = Color3.fromRGB(190, 255, 236)
 local TOWER_COLUMNS = 17
 local GLYPH_TOP_ROW = 13
 local PATTERN = {
-	"111 0 111 0 111",
-	"101 1 001 1 101",
-	"101 0 111 0 101",
-	"101 1 001 1 101",
-	"111 0 111 0 111",
+	-- 0   3   :  0   0
+	"111 111 0 111 111",
+	"101 001 1 101 101",
+	"101 111 0 101 101",
+	"101 001 1 101 101",
+	"111 111 0 111 111",
 }
--- Siffrorna är 3 breda med 1 tomt mellanrum; kolonet 1 brett. Bygg om till en 17-bred bitmapp.
+-- Varje tecken följs av en tom kolumn (siffror 3 breda, kolon 1): 17 kolumner totalt.
 local BITMAP: { { boolean } } = {}
 do
 	for r, text in PATTERN do
@@ -471,7 +471,6 @@ function WorldFxController.start(appRef)
 			0
 		)
 	end)
-	local _ = Theme
 end
 
 return WorldFxController

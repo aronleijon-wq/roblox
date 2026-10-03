@@ -65,17 +65,14 @@ local function row(label: string, text: string, order: number, valueColor: Color
 end
 
 local function divider(order: number)
-	Ui.new(
-		"Frame",
-		{
-			BackgroundColor3 = C.Line,
-			BackgroundTransparency = 0.4,
-			BorderSizePixel = 0,
-			Size = UDim2.new(1, 0, 0, 1),
-			LayoutOrder = order,
-			Parent = body,
-		}
-	)
+	Ui.new("Frame", {
+		BackgroundColor3 = C.Line,
+		BackgroundTransparency = 0.4,
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 0, 1),
+		LayoutOrder = order,
+		Parent = body,
+	})
 end
 
 function ResultsController.show(report)

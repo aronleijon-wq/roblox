@@ -13,6 +13,7 @@ local Harness = {}
 local MOUNTS = {
 	{ dir = "src/shared", service = "ReplicatedStorage", name = "Shared" },
 	{ dir = "src/server", service = "ServerScriptService", name = "Server" },
+	{ dir = "src/client", service = "StarterPlayer", under = "StarterPlayerScripts", name = "Client" },
 }
 
 local function classFor(fileName: string): (string, string)
@@ -52,9 +53,15 @@ function Harness.new(root: string?)
 	end
 
 	for _, m in MOUNTS do
+		local parent = self.game:GetService(m.service)
+		if m.under then
+			local container = parent:FindFirstChild(m.under) or roblox.Instance.new(m.under)
+			container.Parent = parent
+			parent = container
+		end
 		local folder = roblox.Instance.new("Folder")
 		folder.Name = m.name
-		folder.Parent = self.game:GetService(m.service)
+		folder.Parent = parent
 		mount(root .. "/" .. m.dir, folder)
 	end
 

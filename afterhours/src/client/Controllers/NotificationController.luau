@@ -120,7 +120,10 @@ local function toast(kind: string, title: string?, text: string, duration: numbe
 		return a.LayoutOrder < b.LayoutOrder
 	end)
 	while #toasts > MAX_TOASTS do
-		table.remove(toasts, 1):Destroy()
+		local oldest = table.remove(toasts, 1)
+		if oldest then
+			oldest:Destroy()
+		end
 	end
 
 	task.delay(duration or 4, function()
@@ -255,7 +258,7 @@ function NotificationController.start(appRef)
 		Name = "Toasts",
 		BackgroundTransparency = 1,
 		AnchorPoint = Vector2.new(0.5, 0),
-		Position = UDim2.new(0.5, 0, 0, 80),
+		Position = UDim2.new(0.5, 0, 0, 118),
 		Size = UDim2.fromOffset(360, 300),
 		Parent = layer,
 	}, { Ui.list(Enum.FillDirection.Vertical, 6, Enum.HorizontalAlignment.Center) })

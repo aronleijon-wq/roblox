@@ -559,7 +559,11 @@ end
 function DispatchController.close()
 	isOpen = false
 	window.Visible = false
-	GuiService.SelectedObject = nil
+	-- Handkontrollens markering ska inte ligga kvar på en dold knapp.
+	local selectedObject = GuiService.SelectedObject
+	if selectedObject and selectedObject:IsDescendantOf(window) then
+		GuiService.SelectedObject = nil
+	end
 end
 
 function DispatchController.toggle(tab: string?)

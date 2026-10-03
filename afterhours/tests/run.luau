@@ -6,6 +6,7 @@ local SPECS = {
 	require("./logic.spec"),
 	require("./world.spec"),
 	require("./server.spec"),
+	require("./client.spec"), -- måste köras efter servertestet (spelar upp det servern skickade)
 }
 
 for _, spec in SPECS do

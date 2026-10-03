@@ -400,6 +400,7 @@ function ContractService.init(registry)
 			prompt.KeyboardKeyCode = Enum.KeyCode.E
 			prompt:SetAttribute("Action", Constants.Actions.ContractSite)
 			prompt:SetAttribute("Target", siteId)
+			prompt:AddTag(Constants.Tags.ContractPrompt)
 			prompt.Parent = site.part
 			prompts[siteId] = prompt
 		end

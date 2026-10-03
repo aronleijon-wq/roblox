@@ -25,14 +25,23 @@ local function newSignal()
 			end
 		end
 	end
+	function signal:Once(fn)
+		local connection
+		connection = self:Connect(function(...)
+			connection.Disconnect()
+			fn(...)
+		end)
+		return connection
+	end
 	function signal:Wait()
 		error("Wait stöds inte i mocken")
 	end
 	return signal
 end
 Mocks.newSignal = newSignal
+Mocks.signals = signals
 
-local function eventProperty(className: string, name: string)
+function Mocks.eventProperty(className: string, name: string)
 	roblox.implementProperty(className, name, function(instance)
 		signals[instance] = signals[instance] or {}
 		local signal = signals[instance][name]
@@ -49,6 +58,7 @@ function Mocks.install(game, options)
 		time = 1000,
 		fired = {}, -- { remote, player, payload }
 		firedAll = {},
+		sequence = {}, -- allt som skickats till klienter, i ordning (klienttestet spelar upp det)
 		store = {},
 		analytics = 0,
 		invokers = {},
@@ -67,7 +77,7 @@ function Mocks.install(game, options)
 			{ "Humanoid", "Running" },
 		}
 	do
-		eventProperty(spec[1], spec[2])
+		Mocks.eventProperty(spec[1], spec[2])
 	end
 
 	roblox.implementProperty("RemoteFunction", "OnServerInvoke", function(instance)
@@ -211,9 +221,11 @@ function Mocks.install(game, options)
 
 	roblox.implementMethod("RemoteEvent", "FireClient", function(remote, player, payload)
 		table.insert(state.fired, { remote = remote.Name, player = player, payload = payload })
+		table.insert(state.sequence, { remote = remote.Name, player = player, payload = payload })
 	end)
 	roblox.implementMethod("RemoteEvent", "FireAllClients", function(remote, payload)
 		table.insert(state.firedAll, { remote = remote.Name, payload = payload })
+		table.insert(state.sequence, { remote = remote.Name, payload = payload })
 	end)
 
 	local store = {}

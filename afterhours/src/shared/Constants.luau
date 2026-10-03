@@ -41,6 +41,7 @@ Constants.Tags = {
 	AccessGate = "AH_AccessGate", -- dörrar som öppnas per spelare (kontrakt/incident)
 	Npc = "AH_Npc",
 	AmbientSound = "AH_AmbientSound",
+	ContractPrompt = "AH_ContractPrompt", -- klienten visar bara prompten för sitt eget kontrakt
 }
 
 -- Attribut på ReplicatedStorage som alla klienter läser (billigt, replikeras automatiskt).

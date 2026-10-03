@@ -2,7 +2,6 @@
 -- När det blir farligt (02:30 ->) blir klockan större och röd. Under stora händelser göms
 -- HUD:en en stund (filmiskt läge) så att man kan spela in utan skräp på skärmen.
 
-local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
@@ -145,17 +144,13 @@ local function buildHeat()
 		Size = UDim2.fromOffset(40, 16),
 		Parent = heat,
 	})
-	local bar = Ui.new(
-		"Frame",
-		{
-			BackgroundColor3 = C.PanelLight,
-			BorderSizePixel = 0,
-			Position = UDim2.fromOffset(12, 27),
-			Size = UDim2.new(1, -24, 0, 8),
-			Parent = heat,
-		},
-		{ Ui.corner(4) }
-	)
+	local bar = Ui.new("Frame", {
+		BackgroundColor3 = C.PanelLight,
+		BorderSizePixel = 0,
+		Position = UDim2.fromOffset(12, 27),
+		Size = UDim2.new(1, -24, 0, 8),
+		Parent = heat,
+	}, { Ui.corner(4) })
 	refs.heatFill = Ui.new(
 		"Frame",
 		{ BackgroundColor3 = Theme.HeatColors.CALM, BorderSizePixel = 0, Size = UDim2.fromScale(0, 1), Parent = bar },
@@ -251,13 +246,12 @@ end
 
 local function updateNav()
 	local contract = app.state.get("contract")
-	local character = Players.LocalPlayer.Character
-	local root = character and character:FindFirstChild("HumanoidRootPart")
-	if not contract or not contract.active or not contract.targetPosition or not root then
+	local here = app.rootPosition()
+	if not contract or not contract.active or not contract.targetPosition or not here then
 		refs.contractNav.Text = ""
 		return
 	end
-	local offset = contract.targetPosition - root.Position
+	local offset = contract.targetPosition - here
 	local flat = Vector3.new(offset.X, 0, offset.Z)
 	-- Väderstreck: norr = -Z
 	local angle = math.atan2(flat.X, -flat.Z)
@@ -313,21 +307,18 @@ end
 -- Laget -----------------------------------------------------------------------------------------
 
 local function buildTeam()
-	refs.team = panel(
-		{
-			Name = "Team",
-			AnchorPoint = Vector2.new(1, 0),
-			Position = UDim2.new(1, -12, 0, 78),
-			Size = UDim2.fromOffset(210, 34),
-			AutomaticSize = Enum.AutomaticSize.Y,
-			Visible = false,
-			Parent = layer,
-		},
-		{
-			Ui.padding(8),
-			Ui.list(Enum.FillDirection.Vertical, 4),
-		}
-	)
+	refs.team = panel({
+		Name = "Team",
+		AnchorPoint = Vector2.new(1, 0),
+		Position = UDim2.new(1, -12, 0, 78),
+		Size = UDim2.fromOffset(210, 34),
+		AutomaticSize = Enum.AutomaticSize.Y,
+		Visible = false,
+		Parent = layer,
+	}, {
+		Ui.padding(8),
+		Ui.list(Enum.FillDirection.Vertical, 4),
+	})
 end
 
 local function updateTeam(squad)
@@ -352,17 +343,13 @@ local function updateTeam(squad)
 			"Frame",
 			{ BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 16), LayoutOrder = index, Parent = refs.team }
 		)
-		Ui.new(
-			"Frame",
-			{
-				BackgroundColor3 = colors[member.status] or C.Text,
-				BorderSizePixel = 0,
-				Position = UDim2.fromOffset(0, 4),
-				Size = UDim2.fromOffset(8, 8),
-				Parent = row,
-			},
-			{ Ui.corner(4) }
-		)
+		Ui.new("Frame", {
+			BackgroundColor3 = colors[member.status] or C.Text,
+			BorderSizePixel = 0,
+			Position = UDim2.fromOffset(0, 4),
+			Size = UDim2.fromOffset(8, 8),
+			Parent = row,
+		}, { Ui.corner(4) })
 		label({
 			Text = member.name,
 			Font = Theme.Fonts.Bold,

@@ -168,6 +168,10 @@ function InventoryController.select(slot: number?)
 	render(app.state.get("inventory"))
 end
 
+function InventoryController.selected(): number?
+	return selected
+end
+
 function InventoryController.dropSelected()
 	local item = selected and itemAt(selected)
 	if not item or item.contract then
@@ -175,6 +179,7 @@ function InventoryController.dropSelected()
 	end
 	app.remotes.DropItem:FireServer(selected)
 	selected = nil
+	render(app.state.get("inventory"))
 end
 
 function InventoryController.start(appRef)
