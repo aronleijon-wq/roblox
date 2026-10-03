@@ -23,6 +23,8 @@ local WINDOW_STYLES = {
 	Residential = { width = 3, height = 4, gap = 3.2, margin = 3 },
 	Office = { width = 6, height = 5, gap = 1.2, margin = 2.5 },
 	Industrial = { width = 8, height = 2.5, gap = 6, margin = 5 },
+	-- Smala fönster i tornet: 17 kolumner per fasad, så att "03:00" (3x5-siffror) får plats.
+	Tower = { width = 1.6, height = 4.4, gap = 0.6, margin = 1.5 },
 }
 
 -- Halva storleken längs en normal (bredd eller djup).

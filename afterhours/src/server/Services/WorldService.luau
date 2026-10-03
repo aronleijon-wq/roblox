@@ -143,7 +143,13 @@ function WorldService.start()
 	Players.PlayerRemoving:Connect(function(player)
 		access[player] = nil
 	end)
-	local _ = services
+	-- Klienten öppnar dörrar lokalt för de dörrar spelaren har tillträde till.
+	services.State.register("access", function(player)
+		return WorldService.accessList(player)
+	end)
+	WorldService.AccessChanged:Connect(function(player)
+		services.State.mark(player, "access")
+	end)
 end
 
 return WorldService

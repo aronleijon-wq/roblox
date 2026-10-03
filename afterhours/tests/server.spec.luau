@@ -249,6 +249,15 @@ return function(h)
 	end)
 
 	describe("Server: förrådet", function()
+		Mocks.teleport(player, Vector3.new(80, 4, 400))
+		task.wait(0.7)
+		fire("ShopPurchase", player, "Flashlight", "Halogen")
+		check(
+			snapshot(player).profile.cosmetics.flashlight.Halogen == nil,
+			"förrådet går bara att använda i depån"
+		)
+		Mocks.teleport(player, world.depot.spawn.Position)
+		task.wait(0.7)
 		debug(player, "credits", "5000")
 		local before = snapshot(player).profile.credits
 		fire("ShopPurchase", player, "Flashlight", "Sodium")

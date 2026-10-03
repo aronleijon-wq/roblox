@@ -148,7 +148,6 @@ GameConfig.Security = {
 		SubmitCode = { rate = 0.3, burst = 3 },
 		TwistChoice = { rate = 1, burst = 3 },
 		GetSnapshot = { rate = 0.5, burst = 3 },
-		ClientReady = { rate = 0.2, burst = 2 },
 		DebugCommand = { rate = 4, burst = 10 },
 		Interact = { rate = 4, burst = 8 },
 	},

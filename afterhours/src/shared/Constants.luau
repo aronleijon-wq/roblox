@@ -21,7 +21,6 @@ Constants.Remotes = {
 		"ToggleFlashlight", -- C->S
 		"SubmitCode", -- C->S: knappsatsen vid hemliga dörrar
 		"TwistChoice", -- C->S: val när ett kontrakt tar en oväntad vändning
-		"ClientReady", -- C->S: klienten har laddat (onboarding/analytics)
 		"DebugCommand", -- C->S: bara i Studio eller för spelets ägare
 	},
 	Functions = {

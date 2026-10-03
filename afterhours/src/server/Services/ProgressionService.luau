@@ -125,8 +125,10 @@ function ProgressionService.start()
 		local level = ProgressionConfig.levelFor(data.reputation)
 		local nextLevel = ProgressionConfig.nextLevel(data.reputation)
 		local discoveries = 0
-		for _ in data.discoveries do
+		local discovered = {}
+		for id in data.discoveries do
 			discoveries += 1
+			table.insert(discovered, id)
 		end
 		return {
 			credits = data.credits,
@@ -141,6 +143,7 @@ function ProgressionService.start()
 			equipped = data.equipped,
 			purchases = data.purchases,
 			discoveries = discoveries,
+			discovered = discovered,
 			collection = data.collection,
 			stats = data.stats,
 			temporary = services.Data.isTemporary(player),

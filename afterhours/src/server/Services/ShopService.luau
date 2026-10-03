@@ -45,6 +45,10 @@ local function purchase(player: Player, kind: any, id: any)
 	if not data then
 		return
 	end
+	if not services.Player.inZone(player, "Extraction") then
+		services.State.notify(player, "warning", "SUPPLY LOCKER", "The supply locker is at the depot.")
+		return
+	end
 	local def
 	if kind == "Upgrade" then
 		def = ShopConfig.Items[id]

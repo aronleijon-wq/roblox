@@ -27,7 +27,7 @@ function Tower.build(ctx, c: Vector3, _layout)
 		floorHeight = Tower.FloorHeight,
 		windows = {
 			faces = { "North", "South", "East", "West" },
-			style = "Residential",
+			style = "Tower",
 			group = "Tower",
 			litChance = 0.3,
 		},
