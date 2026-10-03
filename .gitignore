@@ -1,0 +1,10 @@
+# Byggda place-filer (skapas med `rojo build`)
+*.rbxl
+*.rbxlx
+*.rbxm
+*.rbxmx
+*.lock
+
+# Genererat av verktyg
+sourcemap.json
+roblox.yml
