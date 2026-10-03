@@ -92,7 +92,7 @@ local function checkpoint(ctx: Context, stage: number, isFinish: boolean)
 	elseif isFinish then
 		pad.Color = Colors.Finish
 		pad.Material = Enum.Material.Neon
-		sign(pad, "MÅL!", Colors.Finish)
+		sign(pad, "FINISH!", Colors.Finish)
 	else
 		pad.Color = Colors.Checkpoint
 		sign(pad, `Checkpoint {stage}`, Color3.new(1, 1, 1))

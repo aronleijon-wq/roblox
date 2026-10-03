@@ -13,7 +13,7 @@ inställningsfil.
 - **Sparade framsteg** (nivå, mynt och vinster) med DataStore, och en topplista
   uppe till höger.
 - **HUD** som visar nivå, en förloppsindikator, mynt, meddelanden och en
-  "Börja om"-knapp när man gått i mål.
+  "Play again"-knapp när man gått i mål.
 - **Fusk-skydd:** checkpoints måste tas i ordning, och all logik körs på servern.
 
 ## Kom igång

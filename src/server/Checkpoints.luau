@@ -40,7 +40,7 @@ local function onTouched(stage: number, hit: BasePart)
 	if stage >= finalStage then
 		PlayerData.addWin(player)
 		PlayerData.addCoins(player, Config.Coins.FinishBonus)
-		Notify:FireClient(player, "finish", `Du klarade banan! +{Config.Coins.FinishBonus} mynt`)
+		Notify:FireClient(player, "finish", `You beat the obby! +{Config.Coins.FinishBonus} coins`)
 	else
 		Notify:FireClient(player, "checkpoint", `Checkpoint {stage}!`)
 	end

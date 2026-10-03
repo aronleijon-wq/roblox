@@ -1,5 +1,5 @@
 -- Hud: visar nivå, framsteg och mynt högst upp på skärmen, meddelanden från servern
--- och en "Börja om"-knapp när man har gått i mål.
+-- och en "Play again"-knapp när man har gått i mål.
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -52,7 +52,7 @@ stageLabel.Font = FONT
 stageLabel.TextSize = 26
 stageLabel.TextColor3 = Color3.new(1, 1, 1)
 stageLabel.TextXAlignment = Enum.TextXAlignment.Left
-stageLabel.Text = "Laddar..."
+stageLabel.Text = "Loading..."
 stageLabel.Parent = panel
 
 local coinLabel = Instance.new("TextLabel")
@@ -108,7 +108,7 @@ restartButton.BackgroundColor3 = Config.Course.Colors.Finish
 restartButton.Font = FONT
 restartButton.TextSize = 28
 restartButton.TextColor3 = Color3.fromRGB(40, 30, 0)
-restartButton.Text = "Börja om från start"
+restartButton.Text = "Play again"
 restartButton.Visible = false
 restartButton.Parent = gui
 corner(restartButton, 12)

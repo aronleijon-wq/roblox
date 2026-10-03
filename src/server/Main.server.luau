@@ -43,7 +43,7 @@ local function onPlayerAdded(player: Player)
 	Spawner.spawn(player)
 
 	if stage > 1 and stage < finalStage then
-		Notify:FireClient(player, "info", `Välkommen tillbaka! Du fortsätter från nivå {stage}.`)
+		Notify:FireClient(player, "info", `Welcome back! Continuing from stage {stage}.`)
 	end
 end
 
@@ -55,7 +55,7 @@ end
 Players.PlayerRemoving:Connect(PlayerData.release)
 game:BindToClose(PlayerData.saveAll)
 
--- Knappen "Börja om" i klientens HUD. Servern kollar att spelaren faktiskt har gått i mål.
+-- Knappen "Play again" i klientens HUD. Servern kollar att spelaren faktiskt har gått i mål.
 RestartCourse.OnServerEvent:Connect(function(player)
 	local stage = PlayerData.getStage(player)
 	local finalStage = Checkpoints.getFinalStage()

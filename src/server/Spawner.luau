@@ -19,7 +19,7 @@ local function respawnWhenGone(player: Player, character: Model)
 		end
 		scheduled = true
 		task.delay(Config.RespawnTime, function()
-			-- Om spelaren redan fått en ny karaktär (t.ex. "Börja om") gör vi inget.
+			-- Om spelaren redan fått en ny karaktär (t.ex. "Play again") gör vi inget.
 			if player.Character == character then
 				Spawner.spawn(player)
 			end

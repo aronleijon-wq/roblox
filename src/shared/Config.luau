@@ -5,9 +5,9 @@ local Config = {}
 
 -- Namnen som syns i topplistan (leaderstats) uppe till höger i spelet.
 Config.Stats = {
-	Stage = "Nivå",
-	Coins = "Mynt",
-	Wins = "Vinster",
+	Stage = "Stage",
+	Coins = "Coins",
+	Wins = "Wins",
 }
 
 -- CollectionService-taggar. Sätt samma taggar på egna delar i Studio

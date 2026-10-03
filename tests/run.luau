@@ -198,7 +198,9 @@ PlayerData.load(alice)
 check(PlayerData.getStage(alice) == 1, "ny spelare börjar på nivå 1")
 local stats = alice:FindFirstChild("leaderstats")
 check(
-	stats and stats:FindFirstChild("Nivå").Value == 1 and stats:FindFirstChild("Mynt").Value == 0,
+	stats
+		and stats:FindFirstChild(Config.Stats.Stage).Value == 1
+		and stats:FindFirstChild(Config.Stats.Coins).Value == 0,
 	"leaderstats skapas"
 )
 
@@ -209,7 +211,7 @@ end
 touch(3)
 check(PlayerData.getStage(alice) == 1, "kan inte hoppa över checkpoints (3 när man är på 1)")
 touch(2)
-check(PlayerData.getStage(alice) == 2 and stats:FindFirstChild("Nivå").Value == 2, "checkpoint 2 tas")
+check(PlayerData.getStage(alice) == 2 and stats:FindFirstChild(Config.Stats.Stage).Value == 2, "checkpoint 2 tas")
 check(fired[#fired].kind == "checkpoint" and fired[#fired].text == "Checkpoint 2!", "klienten får meddelande")
 touch(2)
 check(#fired == 1, "samma checkpoint igen ger inget nytt meddelande")
@@ -220,8 +222,8 @@ for s = 3, 10 do
 end
 check(PlayerData.getStage(alice) == 10, "alla checkpoints i ordning -> nivå 10")
 check(fired[#fired].kind == "finish", "mål ger finish-meddelande")
-check(stats:FindFirstChild("Vinster").Value == 1, "en vinst registrerad")
-check(stats:FindFirstChild("Mynt").Value == Config.Coins.FinishBonus, "målbonus ges")
+check(stats:FindFirstChild(Config.Stats.Wins).Value == 1, "en vinst registrerad")
+check(stats:FindFirstChild(Config.Stats.Coins).Value == Config.Coins.FinishBonus, "målbonus ges")
 
 -- Död spelare kan inte ta checkpoints
 local bob = newPlayer("Bob", 2)
@@ -250,7 +252,7 @@ local carl = newPlayer("Carl", 3)
 PlayerData.load(carl)
 check(PlayerData.getStage(carl) == 4, "giltiga fält behålls")
 check(
-	carl.leaderstats["Mynt"].Value == 0 and carl.leaderstats["Vinster"].Value == 0,
+	carl.leaderstats[Config.Stats.Coins].Value == 0 and carl.leaderstats[Config.Stats.Wins].Value == 0,
 	"saknade/felaktiga fält får standardvärden"
 )
 
