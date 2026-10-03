@@ -1,0 +1,44 @@
+{
+  "name": "Afterhours",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "src/shared"
+      }
+    },
+    "ServerScriptService": {
+      "Server": {
+        "$path": "src/server"
+      }
+    },
+    "StarterPlayer": {
+      "$properties": {
+        "CameraMaxZoomDistance": 32,
+        "CharacterWalkSpeed": 14
+      },
+      "StarterPlayerScripts": {
+        "Client": {
+          "$path": "src/client"
+        }
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "Technology": "Future",
+        "ClockTime": 0.5,
+        "Brightness": 1,
+        "Ambient": [0.09, 0.1, 0.16],
+        "OutdoorAmbient": [0.16, 0.18, 0.27],
+        "EnvironmentDiffuseScale": 0.25,
+        "EnvironmentSpecularScale": 0.4,
+        "GlobalShadows": true
+      }
+    },
+    "Workspace": {
+      "$properties": {
+        "StreamingEnabled": true
+      }
+    }
+  }
+}
