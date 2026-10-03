@@ -65,6 +65,14 @@ DataStore fungerar bara i publicerade spel:
 
 Utan det fungerar spelet ändå, men inget sparas, och du får en varning i Output.
 
+### 4. Ikon och thumbnail
+
+I [`assets/`](assets) finns en färdig ikon (`icon.png`, 512×512) och en thumbnail
+(`thumbnail.png`, 1920×1080). Ladda upp dem i
+[Creator Dashboard](https://create.roblox.com/dashboard/creations): välj spelet,
+gå till **Configure → Places**, klicka på startplatsen och välj **Icon**
+respektive **Thumbnails**.
+
 ## Ändra banan
 
 Nästan allt ställs in i [`src/shared/Config.luau`](src/shared/Config.luau). Banan
